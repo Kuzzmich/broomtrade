@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django_comments',
     'taggit',
     'precise_bbcode',
+    'main',
 ]
 
 MIDDLEWARE = [
@@ -127,9 +128,10 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
 
-# Имена прявязок в хода и выхода с сайта
+# Имена прявязок входа и выхода с сайта
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'main'
 
 # ID сайта для django.contrib.sites
 SITE_ID = 1
