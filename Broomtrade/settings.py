@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'taggit',
     'precise_bbcode',
     'main',
+    'guestbook',
 ]
 
 MIDDLEWARE = [

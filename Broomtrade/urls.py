@@ -25,6 +25,7 @@ urlpatterns = [
     re_path(r'login/', login_view, name='login'),
     re_path(r'logout/', logout_view, name='logout'),
     re_path(r'^', include('main.urls')),
+    re_path(r'^guestbook/', include('guestbook.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
