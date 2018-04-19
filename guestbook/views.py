@@ -4,10 +4,10 @@ from django.views.generic.dates import ArchiveIndexView
 from django.contrib import messages
 from guestbook.models import Guestbook
 from guestbook.forms import GuestbookForm
-from generic.mixins import CategoryListMixin
+from generic.mixins.CategoryListMixin import CategoryListMixin
 
 
-class GuestbookView(ArchiveIndexView):  #  CategoryListMixin - проблема с классом во всех файлах (конфликт метаклассов)
+class GuestbookView(ArchiveIndexView, CategoryListMixin):
     model = Guestbook
     date_field = 'posted'
     template_name = 'guestbook.html'
