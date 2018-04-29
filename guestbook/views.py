@@ -4,7 +4,7 @@ from django.views.generic.dates import ArchiveIndexView
 from django.contrib import messages
 from guestbook.models import Guestbook
 from guestbook.forms import GuestbookForm
-from generic.mixins.CategoryListMixin import CategoryListMixin
+from generic.mixins import CategoryListMixin
 
 
 class GuestbookView(ArchiveIndexView, CategoryListMixin):
