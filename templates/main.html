@@ -11,6 +11,8 @@
         <ul>
             {% url 'main' as page_url %}
             <li><a href="{{ page_url }}" {% if page_url == request.path %}class="current"{% endif %}>Главная</a></li>
+            {% url 'news_index' as page_url %}
+            <li><a href="{{ page_url }}"{% if page_url == request.path %}class="current"{% endif %}>Новости</a> </li>
             {% url 'guestbook' as page_url %}
             <li><a href="{{ page_url }}" {% if page_url == request.path %}class="current"{% endif %}>Гостевая</a></li>
             {% if user.is_authenticated %}
