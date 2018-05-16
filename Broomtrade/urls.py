@@ -27,7 +27,8 @@ urlpatterns = [
     re_path(r'^', include('main.urls')),
     re_path(r'^guestbook/', include('guestbook.urls')),
     re_path(r'^news/', include('news.urls')),
-    re_path(r'^imagepool/', include('imagepool.urls'))
+    re_path(r'^imagepool/', include('imagepool.urls')),
+    re_path(r'^categories/', include('categories.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
