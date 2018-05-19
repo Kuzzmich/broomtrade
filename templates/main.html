@@ -11,8 +11,16 @@
         <ul>
             {% url 'main' as page_url %}
             <li><a href="{{ page_url }}" {% if page_url == request.path %}class="current"{% endif %}>Главная</a></li>
+            {% for object in categories %}
+                {% url 'goods_index' pk=object.pk as page_url %}
+                <li {% if forloop.first %}class="indented"{% endif %}>
+                    <a href="{{ page_url }}" {% if page_url == request.path %}class="current"{% endif %}>
+                        {{ object.name }}
+                    </a>
+                </li>
+            {% endfor %}
             {% url 'news_index' as page_url %}
-            <li><a href="{{ page_url }}" {% if page_url == request.path %}class="current"{% endif %}>Новости</a></li>
+            <li class="indented"><a href="{{ page_url }}" {% if page_url == request.path %}class="current"{% endif %}>Новости</a></li>
             {% url 'guestbook' as page_url %}
             <li><a href="{{ page_url }}" {% if page_url == request.path %}class="current"{% endif %}>Гостевая</a></li>
             {% if user.is_authenticated %}

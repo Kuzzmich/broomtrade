@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'news',
     'imagepool',
     'categories',
+    'goods',
+    'easy_thumbnails',
 ]
 
 MIDDLEWARE = [
@@ -153,7 +155,11 @@ MANAGERS = (('admin', 'admin@email.ru'),)
 
 # E-mail сервер для рассылки
 
-EMAIL_HOST = 'someserver.ru'
-EMAIL_HOST_USER = 'user'
-EMAIL_HOST_PASSWORD = 'PaSsWoRd'
-DEFAULT_FROM_EMAIL = 'mail@someserver.ru'
+# EMAIL_HOST = 'someserver.ru'
+# EMAIL_HOST_USER = 'user'
+# EMAIL_HOST_PASSWORD = 'PaSsWoRd'
+# DEFAULT_FROM_EMAIL = 'mail@someserver.ru'
+
+# Отправка уведомлений на электронную почту локально (тестирование)
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = 'tmp/email-messages/'
