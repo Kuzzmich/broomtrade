@@ -39,13 +39,14 @@ INSTALLED_APPS = [
     'django_comments',
     'taggit',
     'precise_bbcode',
+    'easy_thumbnails',
     'main',
     'guestbook',
     'news',
     'imagepool',
     'categories',
     'goods',
-    'easy_thumbnails',
+    'blog',
 ]
 
 MIDDLEWARE = [
