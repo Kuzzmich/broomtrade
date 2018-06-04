@@ -220,3 +220,10 @@
 .search-form{
     float: right;
 }
+.feeds{
+    text-align: right;
+}
+.feeds a img{
+    width: 25px;
+    height: auto;
+}

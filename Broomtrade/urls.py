@@ -22,6 +22,8 @@ from django.conf.urls.static import static
 from about.views import AboutView
 from contacts.views import ContactsView
 from howtobuy.views import HowToBuyView
+from news.views import RssNewsListFeed, AtomNewsListFeed
+from goods.views import RssGoodListFeed, AtomGoodsListFeed
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,6 +40,10 @@ urlpatterns = [
     re_path(r'^about/', AboutView.as_view(), name='about'),
     re_path(r'^contacts/', ContactsView.as_view(), name='contacts'),
     re_path(r'^howtobuy/', HowToBuyView.as_view(), name='howtobuy'),
+    re_path(r'^feed/rss/', RssNewsListFeed(), name='news_feed_rss'),
+    re_path(r'^feed/atom/', AtomNewsListFeed(), name='news_feed_atom'),
+    re_path(r'^(?P<pk>\d+)/feed/rss/', RssGoodListFeed(), name='goods_feed_rss'),
+    re_path(r'^(?P<pk>\d+)/feed/atom/', AtomGoodsListFeed(), name='goods_feed_atom')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

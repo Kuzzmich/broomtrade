@@ -19,6 +19,10 @@ from django.urls import reverse
 
 from django.views.generic.edit import DeleteView
 
+from django.contrib.syndication.views import Feed
+from django.utils.feedgenerator import Atom1Feed
+from django.core.exceptions import ObjectDoesNotExist
+
 
 # Сортировка товаров
 class SortMixin(ContextMixin):
@@ -174,3 +178,44 @@ class GoodDelete(PageNumberView, DeleteView, SortMixin, PageNumberMixin):
                            '&order=' + self.request.GET['order']
         messages.add_message(request, messages.SUCCESS, 'Товар успешно удален')
         return super().post(request, *args, **kwargs)
+
+
+# RSS рассылка
+class RssGoodListFeed(Feed):
+    def get_object(self, request, *args, **kwargs):
+        try:
+            return Category.objects.get(pk=kwargs['pk'])
+        except Category.DoesNotExist:
+            raise ObjectDoesNotExist('Нет такой категории!')
+
+    def title(self, obj):
+        return obj.name
+
+    def description(self, obj):
+        return 'Товары, относящиеся к категории "' + obj.name + '"'
+
+    def link(self, obj):
+        return reverse('goods_index', kwargs={'pk': obj.pk})
+
+    def categories(self, obj):
+        return [obj.name]
+
+    def items(self, obj):
+        return Good.objects.filter(category=obj).order_by('name')
+
+    def title(self, obj):
+        return 'Товары, относящиеся к категории "' + obj.name + '" :: Веник-Торг'
+
+    def description(self, obj):
+        return self.title(obj)
+
+    def item_categories(self, item):
+        return [item.category.name]
+
+    def item_link(self, item):
+        return reverse('goods_detail', kwargs={'pk': item.pk})
+
+
+class AtomGoodsListFeed(RssGoodListFeed):
+    feed_type = Atom1Feed
+    subtitle = RssGoodListFeed.description
