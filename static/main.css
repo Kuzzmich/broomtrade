@@ -11,6 +11,7 @@
     float: left;
     width: 100px;
     padding: 10px;
+    min-height: 455px;
 }
 #leftmenu ul{
     margin: 0;
@@ -47,6 +48,7 @@
     margin-left: 110px;
     border-left: 1px #cccccc solid;
     padding: 10px;
+    min-height: 455px;
 }
 #main h2:first-child{
     margin: 0 0 10px 0;

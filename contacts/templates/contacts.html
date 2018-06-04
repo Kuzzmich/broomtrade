@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+{% block title %}Контакты{% endblock %}
+{% block main %}
+    <h2>Контакты</h2>
+    <h3>Телефоны:</h3>
+    <ul>
+        <li>директор:+7(999)111-22-33</li>
+        <li>отдел продаж:+7(999)222-33-44</li>
+        <li>бухгалтерия:+7(999)333-44-55</li>
+    </ul>
+    <h3>Электронная почта:</h3>
+    <ul>
+        <li>
+            директор:<a href="mailto:chief@someserv.ru">chief@someserv.ru</a>;
+        </li>
+        <li>
+            отдел продаж:<a href="mailto:sales@someserv.ru">sales@someserv.ru</a>;
+        </li>
+        <li>
+            бухгалтерия:<a href="mailto:finances@someserv.ru">finances@someserv.ru</a>;
+        </li>
+    </ul>
+    <p>
+        По воводу неполадок в работе сайта обращайстесь по адресу
+        <a href="mailto:admin@someserv.ru">admin@someserv.ru</a>;
+    </p>
+{% endblock %}
