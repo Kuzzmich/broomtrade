@@ -159,11 +159,12 @@ MANAGERS = (('admin', 'admin@email.ru'),)
 
 # E-mail сервер для рассылки
 
-# EMAIL_HOST = 'someserver.ru'
-# EMAIL_HOST_USER = 'user'
-# EMAIL_HOST_PASSWORD = 'PaSsWoRd'
-# DEFAULT_FROM_EMAIL = 'mail@someserver.ru'
+EMAIL_HOST = 'mail.rambler.ru'
+EMAIL_HOST_USER = 'brain2009rus@rambler.ru'
+EMAIL_HOST_PASSWORD = 'Brain26rus'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'brain2009rus@rambler.ru'
 
 # Отправка уведомлений на электронную почту локально (тестирование)
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = 'tmp/email-messages/'
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = 'tmp/email-messages/'

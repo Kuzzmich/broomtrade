@@ -11,6 +11,10 @@ from django.contrib.syndication.views import Feed
 from django.urls import reverse
 from django.utils.feedgenerator import Atom1Feed
 
+from django.core.mail import send_mass_mail
+from contacts.models import MailList
+from Broomtrade import settings
+
 
 # Список новостей
 class NewsListView(ArchiveIndexView, CategoryListMixin):
@@ -36,6 +40,22 @@ class NewCreate(SuccessMessageMixin, CreateView, CategoryListMixin):
     success_url = reverse_lazy('news_index')
     success_message = 'Новость успешно создана'
 
+    def form_valid(self, form):
+        output = super().form_valid(form)
+        if MailList.objects.exists():
+            s = 'На сайте "Веник-Торг" появилась новость: \n\n' \
+                + form.instance.title + '\n\n' \
+                + form.instance.description + \
+                '\n\n http://localhost:8000' \
+                + reverse('news_detail', kwargs={'pk': form.instance.pk})
+            letters = []
+            for maillist_item in MailList.objects.all():
+                letters = letters + [('Уведомление с сайта "Веник-Торг"',
+                                      'Здравствуйте, ' + maillist_item.username + '!\n\n' + s,
+                                      settings.DEFAULT_FROM_EMAIL,
+                                      [maillist_item.email])]
+            send_mass_mail(letters, fail_silently=True)
+        return output
 
 # Редактирование новости
 class NewUpdate(SuccessMessageMixin, PageNumberView, UpdateView, PageNumberMixin):

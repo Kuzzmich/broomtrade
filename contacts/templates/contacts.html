@@ -1,4 +1,5 @@
 {% extends 'main.html' %}
+{% include 'generic/messages.html' %}
 {% block title %}Контакты{% endblock %}
 {% block main %}
     <h2>Контакты</h2>
@@ -24,4 +25,11 @@
         По воводу неполадок в работе сайта обращайстесь по адресу
         <a href="mailto:admin@someserv.ru">admin@someserv.ru</a>;
     </p>
+    <h3>Подпишитесь на список рассылки</h3>
+    <div class="form">
+        <form action="" method="post">
+            {% include 'generic/form.html' %}
+            <div class="submit-button"><input type="submit" value="Подписаться"></div>
+        </form>
+    </div>
 {% endblock %}
