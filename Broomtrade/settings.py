@@ -138,6 +138,32 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
 
+# Логирование
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/output.log'),
+            'encoding': 'UTF-8',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'level': 'WARNING',
+            'handlers': ['file'],
+        },
+    },
+}
+
 # Имена прявязок входа и выхода с сайта
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'

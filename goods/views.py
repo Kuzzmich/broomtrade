@@ -23,6 +23,8 @@ from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Atom1Feed
 from django.core.exceptions import ObjectDoesNotExist
 
+import logging
+
 
 # Сортировка товаров
 class SortMixin(ContextMixin):
@@ -37,6 +39,9 @@ class SortMixin(ContextMixin):
 
 
 # Список товаров
+logger = logging.getLogger(__name__)
+
+
 class GoodListView(PageNumberView, ListView, SortMixin, CategoryListMixin):
     model = Good
     template_name = 'goods_index.html'
@@ -48,6 +53,7 @@ class GoodListView(PageNumberView, ListView, SortMixin, CategoryListMixin):
             self.cat = Category.objects.first()
         else:
             self.cat = Category.objects.get(pk=self.kwargs['pk'])
+        # logger.debug(self.cat.name)
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
